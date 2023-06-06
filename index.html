@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Search App (With CRUD Operations)</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    
+    <section class="container">
+        <div class="backdrop"></div>
+        <div class="topSection">
+            <form class="searchForm">
+                <span class="searchIcon">
+                    <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" placeholder="Search employees..." class="searchBox" onkeyup="searchEmployee()">
+                <span class="removeSearch">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </span>
+            </form>
+            <span class="addUser">
+                <i class="fa-solid fa-user-plus"></i>
+            </span>
+            <!-- New Employee Template -->
+            <div class="newEmpTemplate">
+                <span class="close">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </span>
+                <h1 id="emp-id" style="display: none;">0</h1>
+                <div class="imgUpload">
+                    <input type="file" id="file" accept="image/*" hidden>
+                    <div class="img-area" data-img="">
+                        <img src="assets/images/default-image.jpg" class="empImg" alt="">
+                        <span id="img-error" style="margin-top: 10px; color: red;"></span>
+                    </div>
+                </div>
+                <form class="form" id="empForm">
+                    <div class="inputfield">
+                       <label>Name:</label>
+                       <input type="text" name="name" class="input" id="name" onkeyup="validateName()">
+                       <span id="name-error"></span>
+                    </div>  
+                     <div class="inputfield">
+                       <label>Location:</label>
+                       <input type="text" name="location" class="input" id="location" onkeyup="validateLocation()">
+                       <span id="location-error"></span>
+                    </div>  
+                    <div class="inputfield">
+                       <label>Profession:</label>
+                       <input type="text" name="profession" class="input" id="profession" onkeyup="validateProfession()">
+                       <span id="profession-error"></span>
+                    </div>  
+                   <div class="rateContainer">
+                        <label>Rate:</label>
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full" title="Awesome"></label>
+                            <input type="radio" id="star4.5" name="rating" value="4.5"/><label for="star4.5" class="half"></label>
+                            <input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
+                            <input type="radio" id="star3.5" name="rating" value="3.5"/><label for="star3.5" class="half"></label>
+                            <input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full"></label>
+                            <input type="radio" id="star2.5" name="rating" value="2.5"/><label for="star2.5" class="half"></label>
+                            <input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
+                            <input type="radio" id="star1.5" name="rating" value="1.5"/><label for="star1.5" class="half"></label>
+                            <input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
+                            <input type="radio" id="star0.5" name="rating" value="0.5"/><label for="star0.5" class="half"></label>
+                        </fieldset>
+                        <h4 id="rating-value" style="display: block;">0.0</h4>
+                    </div>
+                    <span id="rate-error"></span>
+                    <input type="submit" class="submitBtn" value="Submit">
+                    <input type="button" class="updateBtn" id="updateBtn" value="Update">
+                    <span id="submit-error"></span>
+                </form> 
+            </div>
+        </div>
+        <div class="flex">
+            <span class="empQty">No. of Employees: <span></span></span>
+            <!-- <span class="addUser" onclick="removeSelected()">
+                <i class="fa-solid fa-trash"></i>
+            </span>     -->
+        </div>
+        <div class="midSection scroll-black">
+            <div class="employees-list" id="employees-list">
+                
+            </div>
+            <div class="popup-img">
+                <img src="assets/images/default-image.jpg" alt="">
+            </div>
+        </div>
+        <div class="bottomSection">
+            <span class="footer">
+                Made with<span class="red"> ❤ </span>by Ben Gumaan
+            </span>
+        </div>
+    </section>
+
+
+    <script src="assets/app.js" ></script>
+</body>
+</html>
