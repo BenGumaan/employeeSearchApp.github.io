@@ -27,7 +27,7 @@
             <span class="addUser">
                 <i class="fa-solid fa-user-plus"></i>
             </span>
-            <!-- New Employee Template -->
+            <!-- Add Employee Template -->
             <div class="newEmpTemplate">
                 <span class="close">
                     <i class="fa-solid fa-circle-xmark"></i>
@@ -91,6 +91,22 @@
             </div>
             <div class="popup-img">
                 <img src="assets/images/default-image.jpg" alt="">
+            </div>
+            <!-- Remove Employee Template -->
+            <div class="removeEmpPopUp">
+                <div class="overlay"></div>
+                <div class="rmContainer">
+                    <h1 id="empId" style="display: none;">0</h1>
+                    <span class="close">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </span>    
+                    <img src="" alt="" class="rmEmpImg">
+                    <span>Are you sure you want to delete employee "<span class="empName"></span>"?</span>
+                    <div class="action-btns">
+                        <button id="no">No</button>
+                        <button id="yes">Yes</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="bottomSection">

@@ -72,14 +72,14 @@ function renderEmpList() {
         const div = document.createElement('div');
         div.classList.add('employee');
         div.innerHTML = `
-        <span class="closeBtn removeEmpd" onclick="removeEmp(${item.id})"><i class="fa-solid fa-trash"></i></span>
+        <span class="closeBtn" onclick="displayRemovePopup(${item.id})"><i class="fa-solid fa-trash"></i></span>
         <!-- <span class="editBtn">
             <i class="fa-regular fa-pen-to-square" id="checkBox" onclick="updateEmpData(${item.id})" data-id="${item.id}"></i>
         </span> -->
         <img src="${item.image}" alt="" onclick="popupImage(${item.id})">
         <div class="p-details">
             <h2 onclick="displayEmpData(${item.id})" id="title" style="cursor: pointer;" data-id="${item.id}">${item.name}</h2>
-            <h3>Joined in ${item.date}</h3>
+            <h3><i class="fa-regular fa-calendar"></i> Joined in ${item.date}</h3>
             <div class="bottom">
                 <span class="location"><i class="fa-solid fa-location-dot red"></i> ${item.location}</span>
                 <span class="profession"><i class="fa-solid fa-briefcase blue"></i> ${item.profession}</span>
@@ -180,11 +180,30 @@ const closeBtn = document.querySelector('.close');
 const newEmpTemplate = document.querySelector('.newEmpTemplate');
 const backdrop = document.querySelector('.backdrop');
 const popupImg = document.querySelector('.popup-img');
+const overlay = document.querySelector('.overlay');
+const removeEmpPopup = document.querySelector('.removeEmpPopUp');
+const closeOverlay = removeEmpPopup.querySelector('.close');
 
 addEmp.addEventListener('click', openForm);
 closeBtn.addEventListener('click', closeForm);
 backdrop.addEventListener('click', closeForm);
 popupImg.addEventListener('click', closeForm);
+overlay.addEventListener('click', closeForm);
+closeOverlay.addEventListener('click', closeForm);
+
+function displayRemovePopup(empId) {
+    employees.forEach( id => {
+        if (id.id == empId) {
+            overlay.classList.add('show');
+            removeEmpPopup.querySelector('img').src = id.image;
+            removeEmpPopup.querySelector('.empName').textContent = id.name.split(' ').slice(0, 1).join(' ');
+            removeEmpPopup.classList.add('show');
+        }
+    });
+
+    document.getElementById('empId').textContent = empId;
+
+}
 
 function popupImage(imgId) {
     employees.forEach( id => {
@@ -205,6 +224,7 @@ function openForm() {
 function closeForm() {
     backdrop.classList.remove('show');
     popupImg.classList.remove('show');
+    removeEmpPopup.classList.remove('show');
     newEmpTemplate.classList.remove('open');
     clearForm();
     document.getElementById('emp-id').textContent = 0;
@@ -245,10 +265,21 @@ function getFormData(form) {
     updateList();
 }
 
-function removeEmp(itemId) {
-    // Delete the index of this ID
-    employees = employees.filter(item => item.id != itemId);
+document.getElementById('no').addEventListener('click', (e) => {
+    closeForm();
+});
 
+document.getElementById('yes').addEventListener('click', (e) => {
+    e.preventDefault();
+    let x = document.getElementById('empId').textContent;
+    removeEmp(parseInt(x));
+    closeForm();
+});
+
+function removeEmp(itemId) {
+    
+    employees = employees.filter(item => item.id != itemId);
+    
     updateList();
 }
 
@@ -260,10 +291,6 @@ function clearForm() {
     imgArea.classList.remove('active');
     imgArea.dataset.img = "";
     imgArea.querySelector('span').innerHTML = "";
-    // empImg.src = def_img;
-    // if (empImg) {
-    //     empImg.remove();
-    // }
 
     // Clear Input Fields
     let inputFields = document.querySelectorAll('#empForm .input, #empForm span');

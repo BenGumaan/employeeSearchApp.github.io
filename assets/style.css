@@ -202,10 +202,11 @@ body {
     letter-spacing: 0.4px;
 } 
 .container .employees-list .employee .p-details h3 {
-    font-size: 12px;
-    font-style: italic;
+    font-size: 11px;
     text-transform: capitalize;
+    font-weight: 400;
     color: var(--dark);
+    margin-bottom: 3px;
 } 
 
 .container .bottom {
@@ -261,6 +262,7 @@ body {
 .newEmpTemplate.open {
     display: block;
 }
+
 .newEmpTemplate .close {
     position: absolute;
     top: 10px;
@@ -635,6 +637,10 @@ body {
     .form .rateContainer label{
       font-size: 14px;
     }
+    .removeEmpPopUp .rmContainer {
+        width: 95%;
+        height: 300px;
+    }
   }
 
 
@@ -721,4 +727,96 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.removeEmpPopUp {
+    display: none;
+    opacity: 0;
+}
+
+.removeEmpPopUp.show {
+    display: block;
+    opacity: 1;
+}
+
+.removeEmpPopUp .overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    opacity: 0;
+    border-radius: 8px;
+    /* transition: opacity 0.5s ease-in-out; */
+}
+
+.removeEmpPopUp .overlay.show {
+    display: block;
+    opacity: 1;
+}
+
+
+.rmContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    z-index: 999;
+}
+
+.rmContainer .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--light-red);
+    cursor: pointer;
+}
+
+.rmContainer img{
+    border-radius: 6px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--green);
+}
+
+.rmContainer span{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.rmContainer span .empName{
+    color: var(--red);
+}
+
+.rmContainer .action-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.rmContainer .action-btns button{
+    border-radius: 6px;
+    padding: 10px 50px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+.rmContainer .action-btns #yes{
+    background-color: var(--red);
+}
+.rmContainer .action-btns #no{
+    background-color: var(--green);
 }
